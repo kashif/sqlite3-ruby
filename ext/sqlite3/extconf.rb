@@ -13,7 +13,7 @@ sqlite    = dir_config('sqlite3', ['/usr/local', '/opt/local', '/usr'])
 
 def asplode missing
   abort "#{missing} is missing. Try 'port install sqlite3 +universal' " +
-        "or 'yum install sqlite3-devel'"
+        "or 'brew install sqlite'" + "or 'yum install sqlite3-devel'"
 end
 
 asplode('sqlite3.h')  unless find_header  'sqlite3.h'
