@@ -1,11 +1,11 @@
-require File.join(File.dirname(__FILE__), 'helper')
+require 'helper'
 
 require 'thread'
 require 'benchmark'
 
 class TC_Integration_Pending < Test::Unit::TestCase
   def setup
-    @db = SQLite3::Database.new( "test.db" )
+    @db = SQLite3::Database.new("test.db")
     @db.transaction do
       @db.execute "create table foo ( a integer primary key, b text )"
       @db.execute "insert into foo ( b ) values ( 'foo' )"
@@ -65,8 +65,9 @@ class TC_Integration_Pending < Test::Unit::TestCase
         db2.close if db2
       end
     end
+    sleep 1
 
-    @db.busy_handler do |data, count|
+    @db.busy_handler do |count|
       handler_call_count += 1
       false
     end
